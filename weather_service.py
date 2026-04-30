@@ -31,7 +31,7 @@ def transformar_dados_clima(dados_clima):
     clima_atual = dados_clima.get('currentConditions', {})
     dias = dados_clima.get('days', [])[:7]
 
-    data_atual = datetime.now().strftime('%d/%m/%Y')
+    data_atual = datetime.now().strftime('%Y-%m-%d')
 
     dados_processados = {
         'data': data_atual,
