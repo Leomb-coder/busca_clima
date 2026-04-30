@@ -1,13 +1,16 @@
+import os
 import psycopg2
-from psycopg2.extras import RealDictCursor
+from urllib.parse import urlparse
 
-# Connection config
+url = urlparse(os.getenv("DATABASE_URL"))
+
 DB_CONFIG = {
-    "host":     "localhost",
-    "port":     5432,
-    "dbname":   "historico_clima",
-    "user":     "postgres",
-    "password": 1234
+    "host":     url.hostname,
+    "port":     url.port,
+    "dbname":   url.path[1:],
+    "user":     url.username,
+    "password": url.password,
+    "sslmode":  "require"
 }
 
 def get_connection():
